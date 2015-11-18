@@ -1,5 +1,5 @@
-module.exports.get = function(key, appId, filters, callback) {
-    var url = helpers.newrelic.url(key, appId);
+module.exports.get = function(key, id, filters, callback) {
+    var url = helpers.newrelic.url(key, id);
     if (filters) {
         url += '&' + jsonToQueryString(filters);
     }
@@ -13,10 +13,11 @@ module.exports.get = function(key, appId, filters, callback) {
     request(options, callback);
 }
 
-module.exports.url = function(key, appId) {
+module.exports.url = function(key, id) {
     var urls = {
-        'rpm': 'https://api.newrelic.com/v2/applications/' + appId + '/metrics/data.json?names[]=HttpDispatcher&names[]=EndUser&names[]=Errors/all',
-        'summary': 'https://api.newrelic.com/v2/applications/' + appId + '.json'
+        'rpm': 'https://api.newrelic.com/v2/applications/' + id + '/metrics/data.json?names[]=HttpDispatcher&names[]=EndUser&names[]=Errors/all',
+        'summary': 'https://api.newrelic.com/v2/applications/' + id + '.json',
+        'cpu': 'https://api.newrelic.com/v2/servers/' + id + '/metrics/data.json?names[]=System/Memory/Used/bytes'
     };
     return urls[key];
 }
