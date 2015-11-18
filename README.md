@@ -1,2 +1,2 @@
 # robin
-Robin is a bot for server integrations
+Application health at a glance
