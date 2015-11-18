@@ -24,6 +24,7 @@ for (var a in apps) {
             var metric = metrics[i];
             var chartData = transformData(metric);
             renderChart(chartData);
+            addLabel(metric.pretty_name, apps[a]);
         }
     });
 }
@@ -34,6 +35,7 @@ for (var s in services) {
             var metric = metrics[i];
             var chartData = transformData(metric);
             renderChart(chartData, 'service');
+            addLabel('service', services[s]);
         }
     });
 }
@@ -44,6 +46,7 @@ for (var w in workers) {
             var metric = metrics[i];
             var chartData = transformData(metric);
             renderChart(chartData);
+            addLabel(metric.pretty_name, workers[w]);
         }
     });
 } 
@@ -120,3 +123,11 @@ function renderChart(data, overwriteType) {
     new Chartist.Bar(selector, data, defaultChartOptions);
 }
 
+/* Adds label to chart */
+function addLabel(type, name) {
+    var selector = 'label ' + type;
+    var chartLabel = document.getElementsByClassName(selector)[0];
+    var element = document.createElement('span');
+    element.innerHTML = name;
+    chartLabel.appendChild(element);
+}

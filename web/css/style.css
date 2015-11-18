@@ -9,18 +9,38 @@ body {
 .ct-bar {
     stroke-width: 1px;
 }
-.ct-series-a .ct-bar {
+
+#chart-server .ct-series-a .ct-bar {
     stroke: #3498db;
 }
-.ct-series-b .ct-bar {
+#chart-server .ct-series-b .ct-bar {
     stroke: #9b59b6;
 }
-#chart-browser .ct-bar {
-    stroke: #f4a62a;
+.label.server span:nth-child(1) {
+    color: #3498db;
+}
+.label.server span:nth-child(2) {
+    color: #9b59b6;
 }
 
-#chart-service .ct-bar {
+#chart-browser .ct-series-a .ct-bar {
+    stroke: #f4a62a;
+}
+#chart-browser .chartist-tooltip {
+    background: #e67e22;
+}
+#chart-browser .chartist-tooltip:before {
+    border-top-color: #e67e22;
+}
+.label.browser span:nth-child(1) {
+    color: #f4a62a;
+}
+
+#chart-service .ct-series .ct-bar {
     stroke: #2ecc71;
+}
+.label.service span:nth-child(1) {
+    color: #2ecc71;
 }
 
 #chart-error .ct-series-a .ct-bar {
@@ -29,6 +49,32 @@ body {
 #chart-error .ct-series-b .ct-bar {
     stroke: #e74c3c;
 }
+.label.error span:nth-child(1) {
+    color: #e67e22;
+}
+.label.error span:nth-child(2) {
+    color: #e74c3c;
+}
+
+#chart-worker .ct-series-a .ct-bar {
+    stroke: #1abc9c;
+}
+#chart-worker .ct-series-b .ct-bar {
+    stroke: #16a085;
+}
+#chart-worker .ct-serues-c .ct-bar {
+    stroke: #27ae60;
+}
+.label.worker span:nth-child(1) {
+    color: #1abc9c;
+}
+.label.worker span:nth-child(2) {
+    color: #f4a62a;
+}
+.label.worker span:nth-child(3) {
+    color: #27ae60;
+}
+
 
 .ct-label {
     color: #555;
@@ -38,11 +84,8 @@ body {
     margin-bottom: -20px;
     margin-left: 50px;
 }
-#chart-browser .chartist-tooltip {
-    background: #e67e22;
-}
-#chart-browser .chartist-tooltip:before {
-    border-top-color: #e67e22;
+.label span {
+    padding: 0 10px;
 }
 #chart-error .chartist-tooltip {
     background: #e74c3c;
