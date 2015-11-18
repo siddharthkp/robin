@@ -13,4 +13,4 @@ node_modules
 
 # Configs
 config.json
-web/config.json
+web/config.js
