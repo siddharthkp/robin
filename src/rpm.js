@@ -23,7 +23,6 @@ function parseMetrics(metrics) {
     var combinedMetrics = [];
 
     metrics = prettifyMetricNames(metrics);
-    // metrics = reduceResponseSize(metrics);
     return metrics;
 }
 
@@ -38,14 +37,6 @@ function prettifyMetricNames(metrics) {
         metrics[i].pretty_name = prettyNames[metrics[i].name];
     }
 
-    return metrics;
-}
-
-function reduceResponseSize(metrics) {
-    var whitelist = [
-        'average_response_time', 'request_per_minute', 'errors_per_minute', 'error_percentage'
-    ];
-    //TODO: Delete parameters not in whitelist
     return metrics;
 }
 

@@ -15,9 +15,9 @@ module.exports.get = function(key, id, filters, callback) {
 
 module.exports.url = function(key, id) {
     var urls = {
-        'rpm': 'https://api.newrelic.com/v2/applications/' + id + '/metrics/data.json?names[]=HttpDispatcher&names[]=EndUser&names[]=Errors/all',
+        'rpm': 'https://api.newrelic.com/v2/applications/' + id + '/metrics/data.json?names[]=HttpDispatcher&names[]=EndUser&names[]=Errors/all&values[]=average_response_time&values[]=errors_per_minute&values[]=average_value',
         'summary': 'https://api.newrelic.com/v2/applications/' + id + '.json',
-        'cpu': 'https://api.newrelic.com/v2/servers/' + id + '/metrics/data.json?names[]=System/Memory/Used/bytes'
+        'cpu': 'https://api.newrelic.com/v2/servers/' + id + '/metrics/data.json?names[]=System/Memory/Used/bytes&values[]=average_value'
     };
     return urls[key];
 }
