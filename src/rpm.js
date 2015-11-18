@@ -1,4 +1,4 @@
-app.get('/rpm', function (req, res) {
+app.get('/api/rpm', function (req, res) {
     var params = req.query;
     var appId = params.app_id;
     var from = params.from;
