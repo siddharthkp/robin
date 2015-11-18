@@ -11,6 +11,7 @@ app.get('/api/cpu', function (req, res) {
     helpers.newrelic.get('cpu', serverId, filters, function(err, response, body) {
         var body = JSON.parse(body);
         var metrics = body.metric_data.metrics;
+	metrics[0].pretty_name = 'worker';
         res.end(JSON.stringify({
             data: metrics
         }));
