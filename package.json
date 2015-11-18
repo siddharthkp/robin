@@ -1,0 +1,28 @@
+{
+  "name": "robin",
+  "version": "1.0.0",
+  "description": "sidekick for application health",
+  "main": "index.js",
+  "dependencies": {
+    "body-parser": "1.14.1",
+    "express": "4.13.3",
+    "cors": "2.7.1",
+    "request": "2.65.0",
+    "require-all": "2.0.0",
+    "moment": "2.10.6"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/siddharthkp/robin.git"
+  },
+  "author": "siddharthkp",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/siddharthkp/robin/issues"
+  },
+  "homepage": "https://github.com/siddharthkp/robin"
+}
