@@ -19,34 +19,40 @@ var to = moment().format();
 var filters = '&from=' + from + '&to=' + to;
 
 for (var a in apps) {
-    getApplicationData(apps[a], filters, function(metrics) {
+    getApplicationData(apps[a], filters, function(data) {
+        var metrics = data.metrics;
+        var appId = data.appId;
         for (var i in metrics) {
             var metric = metrics[i];
             var chartData = transformData(metric);
             renderChart(chartData);
-            addLabel(metric.pretty_name, apps[a]);
+            addLabel(metric.pretty_name, appId);
         }
     });
 }
 
 for (var s in services) {
-    getApplicationData(services[s], filters, function(metrics) {
+    getApplicationData(services[s], filters, function(data) {
+	var metrics = data.metrics;
+	var appId = data.appId;
         for (var i in metrics) {
             var metric = metrics[i];
             var chartData = transformData(metric);
             renderChart(chartData, 'service');
-            addLabel('service', services[s]);
+            addLabel('service', appId);
         }
     });
 }
 
 for (var w in workers) {
-    getServerData(workers[w], filters, function(metrics) {
+    getServerData(workers[w], filters, function(data) {
+	var metrics = data.metrics;
+	var serverId = data.serverId;
         for (var i in metrics) {
             var metric = metrics[i];
             var chartData = transformData(metric);
             renderChart(chartData);
-            addLabel(metric.pretty_name, workers[w]);
+            addLabel(metric.pretty_name, serverId);
         }
     });
 } 
@@ -61,14 +67,24 @@ function getAppName(appId, callback) {
 /* Use rpm api to get timeslices */
 function getApplicationData(appId, filters, callback) {
     api('rpm', appId, filters, function(data) {
-        callback(JSON.parse(data).data);
+	var metrics = JSON.parse(data).data;
+        var response = {
+            appId: appId,
+	    metrics: metrics
+        };
+        callback(response);
     });
 }
 
 /* Use cpu api to get timelices */
 function getServerData(serverId, filters, callback) {
     api('cpu', serverId, filters, function(data) {
-	callback(JSON.parse(data).data);
+        var metrics = JSON.parse(data).data;
+        var response = {
+            serverId: serverId,
+	    metrics: metrics
+        };
+	callback(response);
     });
 }
 
@@ -124,10 +140,11 @@ function renderChart(data, overwriteType) {
 }
 
 /* Adds label to chart */
-function addLabel(type, name) {
+function addLabel(type, id) {
     var selector = 'label ' + type;
     var chartLabel = document.getElementsByClassName(selector)[0];
     var element = document.createElement('span');
-    element.innerHTML = name;
+    element.innerHTML = id;
     chartLabel.appendChild(element);
 }
+

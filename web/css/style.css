@@ -60,10 +60,10 @@ body {
     stroke: #1abc9c;
 }
 #chart-worker .ct-series-b .ct-bar {
-    stroke: #16a085;
+    stroke: #f4a62a;
 }
-#chart-worker .ct-serues-c .ct-bar {
-    stroke: #27ae60;
+#chart-worker .ct-series-c .ct-bar {
+    stroke: #3498db;
 }
 .label.worker span:nth-child(1) {
     color: #1abc9c;
@@ -72,7 +72,7 @@ body {
     color: #f4a62a;
 }
 .label.worker span:nth-child(3) {
-    color: #27ae60;
+    color: #3498db;
 }
 
 
