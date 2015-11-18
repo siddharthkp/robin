@@ -1,4 +1,6 @@
 var config = {
-    application_ids: [1, 2]
+    application_ids: [1, 2],
+    services: [],
+    workers: []
 };
 

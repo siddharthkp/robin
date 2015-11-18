@@ -1,6 +1,8 @@
-function api(key, appId, filters, callback) {
+function api(key, id, filters, callback) {
     var base = '/api/';
-    var url = base + key + '?app_id=' + appId;
+    var url = base + key;
+    if (key === 'cpu') url += '?server_id=' + id;
+    else url += '?app_id=' + id;
     if (filters) url += filters;
     get(url, callback);
 }

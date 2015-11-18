@@ -5,16 +5,22 @@ body {
 .ct-chart {
     height: 200px;
 }
+
+.ct-bar {
+    stroke-width: 1px;
+}
 .ct-series-a .ct-bar {
     stroke: #3498db;
-    stroke-width: 1px;
 }
 .ct-series-b .ct-bar {
     stroke: #9b59b6;
-    stroke-width: 1px;
 }
 #chart-browser .ct-bar {
-    stroke: #f4a62a !important;
+    stroke: #f4a62a;
+}
+
+#chart-service .ct-bar {
+    stroke: #2ecc71;
 }
 
 #chart-error .ct-series-a .ct-bar {

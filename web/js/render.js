@@ -10,16 +10,16 @@ get individual data for each app + each type, cache on server side.
 */
 
 /* move to config */
-var apps = config.application_ids;
+var apps = config.applications;
+var services = config.services;
+var workers = config.workers;
 
-for (var i in apps) {
-    /* get app name */
+var from = moment().subtract(1, 'days').format();
+var to = moment().format();
+var filters = '&from=' + from + '&to=' + to;
 
-    /* get all metrics and push to parser */
-    var from = moment().subtract(1, 'days').format();
-    var to = moment().format();
-    var filters = '&from=' + from + '&to=' + to;
-    getData(apps[i], filters, function(metrics) {
+for (var a in apps) {
+    getApplicationData(apps[a], filters, function(metrics) {
         for (var i in metrics) {
             var metric = metrics[i];
             var chartData = transformData(metric);
@@ -27,6 +27,26 @@ for (var i in apps) {
         }
     });
 }
+
+for (var s in services) {
+    getApplicationData(services[s], filters, function(metrics) {
+        for (var i in metrics) {
+            var metric = metrics[i];
+            var chartData = transformData(metric);
+            renderChart(chartData, 'service');
+        }
+    });
+}
+
+for (var w in workers) {
+    getServerData(workers[w], filters, function(metrics) {
+        for (var i in metrics) {
+            var metric = metrics[i];
+            var chartData = transformData(metric);
+            renderChart(chartData);
+        }
+    });
+} 
 
 /* Use summary api to get app name */
 function getAppName(appId, callback) {
@@ -36,9 +56,16 @@ function getAppName(appId, callback) {
 }
 
 /* Use rpm api to get timeslices */
-function getData(appId, filters, callback) {
+function getApplicationData(appId, filters, callback) {
     api('rpm', appId, filters, function(data) {
         callback(JSON.parse(data).data);
+    });
+}
+
+/* Use cpu api to get timelices */
+function getServerData(serverId, filters, callback) {
+    api('cpu', serverId, filters, function(data) {
+	callback(JSON.parse(data).data);
     });
 }
 
@@ -53,7 +80,11 @@ function transformData(metric) {
             var timestamp = moment(metric.timeslices[i].from).format('h:mm a');
             labels.push(timestamp);
         } else labels.push('');
-        value = metric.timeslices[i].values.average_response_time || metric.timeslices[i].values.errors_per_minute;
+        var availableValues = metric.timeslices[i].values;
+	if (type === 'server') value = availableValues.average_response_time;
+	else if (type === 'browser') value = availableValues.average_response_time;
+	else if (type === 'error') value = availableValues.errors_per_minute;
+	else if (type === 'worker') value = parseInt(availableValues.average_value * 100 / 3972844749, 10);
         values.push(value);
     }
     return {
@@ -75,12 +106,14 @@ var defaultChartOptions = {
 var chartDataStore = {
     server: [],
     browser: [],
-    error: []
+    error: [],
+    service: [],
+    worker: []
 };
 
 /* Renders chart given the type */
-function renderChart(data) {
-    var type = data.type;
+function renderChart(data, overwriteType) {
+    var type = overwriteType || data.type;
     chartDataStore[type].push(data.values);
     data.series = chartDataStore[type];
     var selector  = '#chart-' + type;
