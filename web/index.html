@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Robin</title>
+    <link rel="stylesheet" href="css/chartist.min.css">
+    <link rel="stylesheet" href="css/chartist-plugin-tooltip.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,200' rel='stylesheet' type='text/css'>
+  </head>
+  <body>
+    <div class="label">Server response time</div>
+    <div class="ct-chart" id="chart-server"></div>
+    <div class="label">End user response time</div>
+    <div class="ct-chart" id="chart-browser"></div>
+    <div class="label">Errors/minute</div>
+    <div class="ct-chart" id="chart-error"></div>
+    <script src="config.js"></script>
+    <script src="js/vendor/chartist.min.js"></script>
+    <script src="js/vendor/chartist-plugin-tooltip.min.js"></script>
+    <script src="js/vendor/moment.min.js"></script>
+    <script src="js/vendor/async.js"></script>
+    <script src="js/helpers/get.js"></script>
+    <script src="js/helpers/api.js"></script>
+    <script src="js/render.js"></script>
+  </body>
+</html>

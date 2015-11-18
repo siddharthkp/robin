@@ -1,0 +1,4 @@
+var config = {
+    application_ids: [1, 2]
+};
+

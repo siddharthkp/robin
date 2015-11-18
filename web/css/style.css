@@ -1,0 +1,47 @@
+body {
+    background: #222;
+    font-family: 'Source Sans Pro', sans-serif;
+}
+.ct-chart {
+    height: 200px;
+}
+.ct-series-a .ct-bar {
+    stroke: #3498db;
+    stroke-width: 1px;
+}
+.ct-series-b .ct-bar {
+    stroke: #9b59b6;
+    stroke-width: 1px;
+}
+#chart-browser .ct-bar {
+    stroke: #f4a62a !important;
+}
+
+#chart-error .ct-series-a .ct-bar {
+    stroke: #e67e22;
+}
+#chart-error .ct-series-b .ct-bar {
+    stroke: #e74c3c;
+}
+
+.ct-label {
+    color: #555;
+}
+.label {
+    color: #FFF;
+    margin-bottom: -20px;
+    margin-left: 50px;
+}
+#chart-browser .chartist-tooltip {
+    background: #e67e22;
+}
+#chart-browser .chartist-tooltip:before {
+    border-top-color: #e67e22;
+}
+#chart-error .chartist-tooltip {
+    background: #e74c3c;
+}
+#chart-error .chartist-tooltip:before {
+    border-top-color: #e74c3c;
+}
+

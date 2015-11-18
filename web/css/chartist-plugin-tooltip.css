@@ -1,0 +1,23 @@
+.chartist-tooltip {
+    position: absolute;
+    display: inline-block;
+    min-width: 5em;
+    padding: .5em;
+    background: #2980b8;
+    color: #EEE;
+    text-align: center;
+    z-index: 1;
+    font-weight: 200;
+}
+.chartist-tooltip:before {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    margin-left: -5px;
+    border: 5px solid transparent;
+    border-top-color: #2980b8;
+}
+
